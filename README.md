@@ -1,48 +1,148 @@
-# Cloud Resume RAG Frontend
+# Cloud Resume RAG
 
-这是 Cloud Resume Challenge 的日语 RAG 问答前端。页面通过 AWS API Gateway 的 `/ask` 接口调用后端，并展示回答和公开引用来源。问题与回答不会由应用主动保存。
+Cloud Resume Challenge に組み込んだ、日本語対応の RAG（Retrieval-Augmented Generation）質問回答システムです。
 
-界面、推荐问题、回答和错误提示统一使用日语。
+訪問者は、候補者のスキル、プロジェクト、インターンシップ、学歴、勤務可能時間などを質問できます。回答は Amazon Bedrock Knowledge Bases で検索した履歴書資料を根拠に生成され、公開可能な参照元も表示します。
 
-## API 配置
+## アーキテクチャ
 
-API 地址和超时时间位于 `config.js`：
-
-```javascript
-globalThis.APP_CONFIG = Object.freeze({
-  RAG_API_URL: "https://example.execute-api.ap-northeast-1.amazonaws.com/ask",
-  RAG_REQUEST_TIMEOUT_MS: 30000,
-});
+```text
+Cloud Resume Frontend
+        ↓
+API Gateway HTTP API
+        ↓
+AWS Lambda
+        ↓
+Amazon Bedrock Knowledge Base
+        ↓
+S3 Documents + S3 Vectors
 ```
 
-部署到其他环境时，只需要替换 `RAG_API_URL`。后端需要允许对应前端 Origin 的 CORS 请求。
+## 主な機能
 
-## 本地运行
+- 検索結果に基づく日本語回答
+- 中国語・英語の質問にも日本語で回答
+- 回答の参照元を公開 metadata として表示
+- スキル、プロジェクト、経験、勤務可能時間への対応
+- 知識ベース外の質問に対する安全な拒答
+- Cloud Resume フロントエンドの AI チャットウィンドウ
+- API Gateway の CORS とレート制限
+- Terraform による AWS リソース管理
 
-在项目目录执行：
+## ディレクトリ構成
+
+```text
+backend/          AWS Lambda の RAG バックエンド
+knowledge/        履歴書の検索対象ドキュメント
+infrastructure/   Terraform による AWS インフラ定義
+evals/             RAG 回答品質の評価スクリプトと質問セット
+frontend-tests/    フロントエンド API クライアントのテスト
+api-client.js      フロントエンドから API を呼び出すクライアント
+rag-widget.js      AI チャットウィンドウの Web Component
+```
+
+## ローカル起動
+
+リポジトリのルートで HTTP サーバーを起動します。
 
 ```powershell
 python -m http.server 8000
 ```
 
-然后访问：
+ブラウザで次の URL を開きます。
 
 ```text
-http://localhost:8000
+http://127.0.0.1:8000
 ```
 
-由于页面使用 ES Module，请通过 HTTP 服务器访问，不要直接双击打开 `index.html`。
+`index.html` を直接開くのではなく、HTTP サーバー経由でアクセスしてください。
 
-## 使用流程
+## テスト
 
-- 点击推荐问题查看真实 RAG 回答和引用来源。
-- 输入任意日语问题并发送。
-- 输入知识库范围外的问题，查看无答案处理。
-- 窄屏下通过右下角的 `AI に質問` 按钮打开问答面板。
-
-## 本地检查
+バックエンドのテストを実行します。
 
 ```powershell
-npm run check
+python -m pytest backend/tests -p no:cacheprovider
+```
+
+フロントエンドのテストを実行します。
+
+```powershell
 npm test
 ```
+
+## 公開 API
+
+```http
+POST /ask
+Content-Type: application/json
+```
+
+リクエスト例：
+
+```json
+{
+  "question": "曜日ごとの勤務可能時間を教えてください。"
+}
+```
+
+レスポンス例：
+
+```json
+{
+  "answer": "月曜日はリモートワークであれば終日勤務可能です。",
+  "sources": [
+    {
+      "title": "勤務可能時間",
+      "section": "availability"
+    }
+  ]
+}
+```
+
+API の URL は Terraform の output で確認できます。
+
+```powershell
+cd infrastructure
+terraform output -raw rag_api_url
+```
+
+## AWS デプロイ
+
+AWS の認証情報を設定した上で、Terraform を実行します。
+
+```powershell
+cd infrastructure
+terraform init
+terraform fmt -check
+terraform validate
+terraform plan -out=deployment.tfplan
+terraform apply deployment.tfplan
+```
+
+`knowledge/` のドキュメントを追加・変更した場合は、適用後に Bedrock Knowledge Base の ingestion job を実行してください。
+
+```powershell
+$knowledgeBaseId = terraform output -raw knowledge_base_id
+$dataSourceId = terraform output -raw data_source_id
+
+aws bedrock-agent start-ingestion-job `
+  --region ap-northeast-1 `
+  --knowledge-base-id $knowledgeBaseId `
+  --data-source-id $dataSourceId
+```
+
+## セキュリティとデータ管理
+
+- AWS のアクセスキーや Terraform の state ファイルを Git にコミットしない
+- Lambda は指定された Knowledge Base と生成モデルだけを利用する
+- API のレスポンスには内部 S3 URI や検索本文を含めない
+- ユーザーの質問と回答はアプリケーションから保存しない
+- Knowledge Base に存在しない情報を推測して回答しない
+
+## 関連ドキュメント
+
+- [`docs/product-design.md`](docs/product-design.md)：プロダクト設計
+- [`docs/technical-design.md`](docs/technical-design.md)：技術設計
+- [`docs/implementation-plan.md`](docs/implementation-plan.md)：実装計画
+- [`docs/implementation-status.md`](docs/implementation-status.md)：実装状況
