@@ -18,7 +18,7 @@
   "components": [
     { "id": "visitor", "type": "external", "label": "訪問者", "sublabel": "ブラウザ / モバイル", "row": 1, "col": 0 },
     { "id": "webDelivery", "type": "cloud", "label": "静的サイト配信", "sublabel": "S3 + CloudFront", "row": 1, "col": 1 },
-    { "id": "portfolioUi", "type": "frontend", "label": "Portfolio UI", "sublabel": "React/Vite・JS", "row": 1, "col": 2 },
+    { "id": "portfolioUi", "type": "frontend", "label": "Portfolio UI", "sublabel": "React・TypeScript", "row": 1, "col": 2 },
     { "id": "ragApi", "type": "cloud", "label": "RAG HTTP API", "sublabel": "Amazon API Gateway", "row": 1, "col": 3 },
     { "id": "ragLambda", "type": "backend", "label": "RAG Lambda", "sublabel": "Python · 入力検証", "row": 1, "col": 4 },
     { "id": "knowledgeBase", "type": "backend", "label": "Bedrock Knowledge Base", "sublabel": "RetrieveAndGenerate", "row": 1, "col": 5, "size": [150, 74] },
@@ -58,7 +58,7 @@
       "dot": "emerald",
       "title": "リポジトリの役割",
       "items": [
-        "cloud-resume-frontend：静的ポートフォリオと RAG ウィジェット。",
+        "typescript-practice：React/TypeScript ポートフォリオと RAG UI。",
         "cloud-resume-backend：訪問者カウンター、DynamoDB、Terraform。",
         "rag-practice：RAG API、ナレッジ、評価、インフラ。"
       ]

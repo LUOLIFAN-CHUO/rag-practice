@@ -77,7 +77,7 @@ npm test
 
 ## 関連リポジトリ
 
-- [cloud-resume-frontend](https://github.com/LUOLIFAN-CHUO/cloud-resume-frontend) — 履歴書サイトと RAG ウィジェット
+- [typescript-practice](https://github.com/LUOLIFAN-CHUO/typescript-practice) — React/TypeScript 履歴書サイトと RAG UI
 - [cloud-resume-backend](https://github.com/LUOLIFAN-CHUO/cloud-resume-backend) — 訪問者カウンター API
 
 ## アーキテクチャ成果物

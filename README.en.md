@@ -77,7 +77,7 @@ npm test
 
 ## Related repositories
 
-- [cloud-resume-frontend](https://github.com/LUOLIFAN-CHUO/cloud-resume-frontend) — resume website and RAG widget
+- [typescript-practice](https://github.com/LUOLIFAN-CHUO/typescript-practice) — React/TypeScript resume website and RAG UI
 - [cloud-resume-backend](https://github.com/LUOLIFAN-CHUO/cloud-resume-backend) — visitor-counter API
 
 ## Architecture artifacts
