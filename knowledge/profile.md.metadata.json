@@ -1,0 +1,25 @@
+{
+  "metadataAttributes": {
+    "title": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "プロフィール"
+      },
+      "includeForEmbedding": true
+    },
+    "category": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "profile"
+      },
+      "includeForEmbedding": false
+    },
+    "section": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "about"
+      },
+      "includeForEmbedding": false
+    }
+  }
+}

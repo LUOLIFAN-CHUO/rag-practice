@@ -145,11 +145,14 @@ rag_practice/
 │   └── versions.tf
 ├── knowledge/
 │   ├── profile.md
+│   ├── profile.md.metadata.json
 │   ├── skills-and-education.md
+│   ├── skills-and-education.md.metadata.json
 │   ├── internships.md
+│   ├── internships.md.metadata.json
 │   ├── projects/
 │   │   └── cloud-resume-challenge.md
-│   └── metadata/
+│       └── cloud-resume-challenge.md.metadata.json
 ├── evals/
 │   └── questions.json
 ├── docs/
@@ -182,6 +185,8 @@ rag_practice/
   "section": "projects"
 }
 ```
+
+Metadata 使用 Bedrock S3 Data Source 的 sidecar 格式。文件名为 `<源文档文件名>.metadata.json`，并与对应源文档存放在同一目录，例如 `profile.md.metadata.json`。`title` 可以参与 Embedding，`category` 和 `section` 只用于来源映射。
 
 前端只显示友好的 `title` 和 `section`，不暴露 S3 URI、Knowledge Base ID 或内部文件路径。
 

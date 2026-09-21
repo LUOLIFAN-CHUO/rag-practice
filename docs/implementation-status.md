@@ -15,4 +15,12 @@
 - 产品设计：`docs/product-design.md`
 - 技术方案：`technical-design.md`
 - 开发计划：`docs/implementation-plan.md`
-- 下一 Task：Task 1，建立知识库内容与评估基线。
+- 下一 Task：Task 2，建立后端项目骨架与 API 契约。
+
+## Task 1：建立知识库内容与评估基线
+
+- 状态：已完成
+- 知识文档：4 份日语 Markdown 文档。
+- Metadata：4 份 Bedrock S3 Data Source sidecar 文件。
+- 评估基线：26 条问题，覆盖日语、中文、英文、范围外问题和 Prompt Injection。
+- 验证重点：预期来源、必要事实、固定日语回答和拒答行为。
