@@ -1,4 +1,6 @@
 # Resume AI Chatbot（RAG）
+DEMO：https://dyp8879eswsdu.cloudfront.net/
+
 
 WEB履歴書 に追加する、日本語対応の履歴書 AI チャットボットです。
 
