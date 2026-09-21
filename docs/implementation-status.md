@@ -113,3 +113,11 @@
 - 生成规则：多个事实要求使用短标题和逐项的「・」列表；单一事实保持简短单句。
 - 前端展示：勤務可能时间显示标题与逐行项目；其他包含多个事实的回答也会自动换行并转换为项目列表。
 - AWS 部署：结构化回答提示已更新至现有 Lambda，真实 API 的 Cloud Resume Challenge 问题已返回分组内容与项目列表。
+
+## TypeScript 前端迁移
+
+- 状态：已完成
+- 前端：在 `typescript/developer-portfolio` 的 React/TypeScript 页面中新增 `RagChatbot` 组件和 `ragApi` 服务。
+- 交互：保留勤務可能时间首个推荐问题、回答后的开始时间后续问题、来源展示和多事实逐项排版。
+- 验证：TypeScript 类型检查、ESLint、6 个前端测试和 Vite production build 全部通过。
+- 部署：提交 `ce63a89` 已推送到 `typescript-practice`；构建产物已上传到 CloudFront 对应 S3，缓存刷新已完成。
