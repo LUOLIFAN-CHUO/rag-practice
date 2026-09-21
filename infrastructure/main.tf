@@ -341,7 +341,9 @@ resource "aws_lambda_function" "rag" {
   handler          = "src.handler.lambda_handler"
   runtime          = "python3.13"
   memory_size      = 256
-  timeout          = 30
+  timeout          = var.lambda_timeout_seconds
+
+  reserved_concurrent_executions = var.lambda_reserved_concurrency
 
   environment {
     variables = {

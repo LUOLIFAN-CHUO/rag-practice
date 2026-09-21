@@ -7,7 +7,7 @@
 - 数据：使用前端本地 Mock 数据，不连接真实后端。
 - 已覆盖：推荐问题、自由提问、加载状态、来源展示、无答案处理、响应式布局。
 - 语言：产品界面和 Mock 回答统一使用日语。
-- 暂未实现：真实检索、模型调用、API、会话存储和反馈收集。
+- 暂未实现：前端真实 API 接入、会话存储和反馈收集。
 
 ## Design Documents
 
@@ -15,7 +15,7 @@
 - 产品设计：`docs/product-design.md`
 - 技术方案：`docs/technical-design.md`
 - 开发计划：`docs/implementation-plan.md`
-- 下一 Task：Task 5，创建公开 API。
+- 下一 Task：Task 6，执行 RAG 质量评估与调整。
 
 ## Task 1：建立知识库内容与评估基线
 
@@ -57,3 +57,16 @@
 - 自动测试：28 个 pytest 测试通过，覆盖成功、无引用、固定拒答、超时和服务异常等场景。
 - AWS 验证：日语、中文和英文问题均通过真实 Lambda 调用返回 `200` 和日语回答，来源与知识文档一致。
 - 范围确认：Lambda 可独立完成真实 RAG 请求，尚未创建 API Gateway 或接入公开前端。
+
+## Task 5：创建公开 API
+
+- 状态：已完成
+- HTTP API：创建 API Gateway HTTP API，仅公开 `POST /ask`，地址为 `https://db895lxek2.execute-api.ap-northeast-1.amazonaws.com/ask`。
+- Lambda 集成：使用 payload format 2.0，集成超时为 29 秒，Lambda 超时为 28 秒，并使用限定到该 API 路由的调用权限。
+- CORS：精确允许正式 CloudFront Origin、`http://localhost:8000` 和 `http://127.0.0.1:8000`，不使用通配符。
+- 限流：路由默认限制为每秒 1 个请求、突发 2 个请求；并发测试可稳定触发安全的 `429`。
+- 并发限制：当前账户的区域 Lambda 总并发额度为 10，AWS 要求全部保持未预留，无法设置函数级 reserved concurrency；当前由账户总额度和 API 路由限流共同限制。
+- API 验证：合法问题返回 `200`、日语回答和公开来源；非法输入返回 `400`；未允许 Origin 不返回有效 CORS 授权头。
+- 安全验证：`429` 和后端错误响应不包含堆栈、凭证或 AWS 内部资源信息。
+- Terraform 验证：`fmt -check`、`validate` 和部署后无变更 `plan` 通过。
+- 范围确认：尚未修改前端 Mock，也未执行 Task 6 的完整质量评估。

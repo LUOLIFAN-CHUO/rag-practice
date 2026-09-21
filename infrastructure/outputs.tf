@@ -39,11 +39,16 @@ output "knowledge_base_role_arn" {
 }
 
 output "rag_lambda_function_name" {
-  description = "Name of the private Lambda function used for Task 4 verification."
+  description = "Name of the Lambda function backing the RAG API."
   value       = aws_lambda_function.rag.function_name
 }
 
 output "rag_lambda_function_arn" {
-  description = "ARN of the private Lambda function used for Task 4 verification."
+  description = "ARN of the Lambda function backing the RAG API."
   value       = aws_lambda_function.rag.arn
+}
+
+output "rag_api_url" {
+  description = "Public POST endpoint for the resume RAG assistant."
+  value       = "${aws_apigatewayv2_api.rag.api_endpoint}/ask"
 }
