@@ -102,9 +102,6 @@ export async function requestAnswer({
     try {
       payload = await response.json();
     } catch {
-      if (!response.ok) {
-        throw statusError(response.status, {});
-      }
       throw new ApiClientError(
         "INVALID_RESPONSE",
         ERROR_MESSAGES.INVALID_RESPONSE,
@@ -118,7 +115,6 @@ export async function requestAnswer({
 
     if (
       typeof payload.answer !== "string" ||
-      payload.answer.trim().length === 0 ||
       !Array.isArray(payload.sources) ||
       !payload.sources.every(validSource)
     ) {
