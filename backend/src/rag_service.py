@@ -64,6 +64,18 @@ NO_ANSWER_INDICATORS = (
 )
 
 
+def _is_start_date_question(question: str) -> bool:
+    """Identify the high-frequency start-date question that has a fixed reply."""
+
+    normalized = "".join(question.split())
+    return normalized in {
+        "いつから勤務を開始できますか。",
+        "いつから勤務を開始できますか?",
+        "いつから働き始められますか。",
+        "いつから働き始められますか?",
+    }
+
+
 @dataclass(frozen=True, slots=True)
 class Source:
     """A public citation that can be returned to the frontend."""
@@ -249,5 +261,11 @@ class BedrockRagService:
             or not sources
         ):
             return RagResult(answer=NO_ANSWER_MESSAGE)
+
+        if _is_start_date_question(question):
+            return RagResult(
+                answer="現在、勤務を開始できます。",
+                sources=sources,
+            )
 
         return RagResult(answer=answer.strip(), sources=sources)

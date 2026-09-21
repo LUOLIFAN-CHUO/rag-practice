@@ -98,6 +98,33 @@ def test_answer_calls_bedrock_and_maps_deduplicated_sources() -> None:
     assert "$output_format_instructions$" in GENERATION_PROMPT
 
 
+def test_start_date_question_returns_only_availability_statement() -> None:
+    client = FakeBedrockClient(
+        response={
+            "output": {
+                "text": "現在、勤務を開始できます。具体的な勤務日数や時間は面談時に相談できます。"
+            },
+            "citations": [
+                {
+                    "retrievedReferences": [
+                        {
+                            "metadata": {
+                                "title": "勤務可能時間",
+                                "section": "availability",
+                            }
+                        }
+                    ]
+                }
+            ],
+        }
+    )
+
+    result = service(client).answer("いつから勤務を開始できますか。")
+
+    assert result.answer == "現在、勤務を開始できます。"
+    assert result.sources == (Source(title="勤務可能時間", section="availability"),)
+
+
 @pytest.mark.parametrize(
     "response",
     [
