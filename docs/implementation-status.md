@@ -87,6 +87,9 @@
 ## Task 7：前端接入真实 API
 
 - 状态：已完成
+- 原站集成：在 `cloud-resume-frontend` 中以独立 Web Component 接入右下角问答窗口；原页面只增加组件标签和脚本引用，组件样式通过 Shadow DOM 隔离。
+- 原功能保护：未修改原前端全局样式、访客计数脚本或 `cloud-resume-backend`；原菜单、履历内容、图片功能和访客计数保持可用。
+- Demo 定位：`rag_practice` 根目录下的整页 Demo 仅保留为开发参考，不作为原 Cloud Resume 前端或发布页面。
 - API 接入：移除 `MOCK_RESPONSES`，通过可配置 URL 向公开 `/ask` 发送 `POST` 请求，并映射 `answer` 与公开的 `title`、`section` 来源。
 - 交互保护：请求期间锁定输入和发送按钮，防止重复提交；失败后保留原问题以便重试。
 - 错误处理：为超时、`400`、`429`、`500`、`503`、网络失败和无效响应提供安全的日语提示，不暴露内部错误。
