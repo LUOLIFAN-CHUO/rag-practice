@@ -816,6 +816,12 @@ svg {
   white-space: pre-line;
 }
 
+.error-message .message-body > p {
+  color: #7b3c38;
+  background: #fff4f2;
+  border: 1px solid #f0d4cf;
+}
+
 .message-time {
   display: block;
   margin-top: 5px;
@@ -990,6 +996,11 @@ svg {
 
 .question-form textarea::placeholder {
   color: #9aa5b1;
+}
+
+.question-form textarea:disabled {
+  cursor: wait;
+  opacity: 0.72;
 }
 
 .input-footer {

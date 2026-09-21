@@ -1,0 +1,9 @@
+{
+  "name": "cloud-resume-rag-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check app.js && node --check config.js && node --check api-client.js",
+    "test": "node --test --test-isolation=none frontend-tests/api-client.test.mjs"
+  }
+}

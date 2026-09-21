@@ -1,8 +1,21 @@
-# Cloud Resume RAG Frontend Demo
+# Cloud Resume RAG Frontend
 
-这是一个使用本地 Mock 数据的静态前端 Demo，用于验证简历 RAG 问答助手的界面和操作流程。当前版本不会调用后端 API，也不会发送或保存用户输入。
+这是 Cloud Resume Challenge 的日语 RAG 问答前端。页面通过 AWS API Gateway 的 `/ask` 接口调用后端，并展示回答和公开引用来源。问题与回答不会由应用主动保存。
 
-界面、推荐问题和 Mock 回答统一使用日语。
+界面、推荐问题、回答和错误提示统一使用日语。
+
+## API 配置
+
+API 地址和超时时间位于 `config.js`：
+
+```javascript
+globalThis.APP_CONFIG = Object.freeze({
+  RAG_API_URL: "https://example.execute-api.ap-northeast-1.amazonaws.com/ask",
+  RAG_REQUEST_TIMEOUT_MS: 30000,
+});
+```
+
+部署到其他环境时，只需要替换 `RAG_API_URL`。后端需要允许对应前端 Origin 的 CORS 请求。
 
 ## 本地运行
 
@@ -18,11 +31,18 @@ python -m http.server 8000
 http://localhost:8000
 ```
 
-也可以直接使用浏览器打开 `index.html`。
+由于页面使用 ES Module，请通过 HTTP 服务器访问，不要直接双击打开 `index.html`。
 
-## Demo 流程
+## 使用流程
 
-- 点击推荐问题查看 Mock 回答和引用来源。
-- 输入包含「スキル」「AWS」「プロジェクト」「インターン」「大学」或「将来」的问题查看不同回答。
+- 点击推荐问题查看真实 RAG 回答和引用来源。
+- 输入任意日语问题并发送。
 - 输入知识库范围外的问题，查看无答案处理。
 - 窄屏下通过右下角的 `AI に質問` 按钮打开问答面板。
+
+## 本地检查
+
+```powershell
+npm run check
+npm test
+```

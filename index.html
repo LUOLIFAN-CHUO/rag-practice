@@ -219,7 +219,7 @@
             <path d="M12 3 4 7v5c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V7l-8-4Z" />
             <path d="m9.5 12 1.7 1.7 3.6-4" />
           </svg>
-          デモはローカルのモックデータを使用し、質問を送信・保存しません
+          質問は回答生成のために AWS へ送信されます。質問と回答は保存しません
         </div>
 
         <form id="questionForm" class="question-form">
@@ -254,6 +254,7 @@
       <span>AI に質問</span>
     </button>
 
-    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>
