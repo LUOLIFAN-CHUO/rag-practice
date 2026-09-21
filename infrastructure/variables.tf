@@ -47,7 +47,7 @@ variable "max_question_length" {
 variable "retrieval_result_count" {
   description = "Number of knowledge base chunks retrieved for each question."
   type        = number
-  default     = 4
+  default     = 6
 
   validation {
     condition     = var.retrieval_result_count >= 1 && var.retrieval_result_count <= 10

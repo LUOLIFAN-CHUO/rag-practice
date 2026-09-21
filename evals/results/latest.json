@@ -1,0 +1,748 @@
+{
+  "schemaVersion": "1.0",
+  "evaluatedAt": "2026-09-21T06:19:33.180306+00:00",
+  "apiUrl": "https://db895lxek2.execute-api.ap-northeast-1.amazonaws.com/ask",
+  "summary": {
+    "cases": 26,
+    "passed": 22,
+    "failed": 4,
+    "passRate": 0.8462,
+    "checksPassed": {
+      "http": 26,
+      "japanese": 26,
+      "sources": 26,
+      "facts": 22,
+      "refusal": 26
+    },
+    "latencyMs": {
+      "mean": 1155,
+      "p50": 1012,
+      "p95": 1953,
+      "max": 2204
+    }
+  },
+  "results": [
+    {
+      "id": "ja-profile-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 2204,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "answer": "ラ・リキハンは、クラウドエンジニアを目指しています。具体的には、Web 開発、クラウド、AI を軸に、サービス開発の現場で価値を生み出せるエンジニアになることを目指しています。将来的には、Web 開発とクラウド技術の両方に強く、AI 技術も実際のサービス開発に活用できるエンジニアになることを目指しています。そのために、必要な技術を自ら学び、実践を通じて身につけていく方針です。"
+    },
+    {
+      "id": "ja-profile-002",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1275,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "answer": "志望職種はクラウドエンジニアです。Web 開発、クラウド、AI を軸に、サービス開発の現場で価値を生み出せるエンジニアを目指しています。将来的には、Web 開発とクラウド技術の両方に強く、AI 技術も実際のサービス開発に活用できるエンジニアになることを目標としています。そのために、必要な技術を自ら学び、実践を通じて身につけていく方針です。"
+    },
+    {
+      "id": "ja-profile-003",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1262,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "answer": "本人が強みとしているのは、分からないことをそのままにせず、自分で調べ、試行錯誤しながら解決する姿勢です。AWS の学習では、教材を読むだけでなく、実際に環境を構築して各サービスの役割や構成を確認しました。初めて扱う技術でも、必要な情報を探し、実際に試しながら理解することを大切にしています。新しい技術や開発環境に取り組む際は、まず自分で考えて調べた上で、必要な点を質問する姿勢を意識しています。"
+    },
+    {
+      "id": "ja-profile-004",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 853,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "プロフィール",
+          "section": "about"
+        }
+      ],
+      "answer": "現在の活動拠点は東京都です。"
+    },
+    {
+      "id": "ja-skills-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1154,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "テクニカルスキルとして、Cloud / DevOps では AWS、Git、GitHub Actions、Terraform、AWS SAM を、プログラミング・マークアップでは Python、Shell、SQL、HTML、CSS、JavaScript を保有しています。また、OS では Linux を扱っています。"
+    },
+    {
+      "id": "ja-skills-002",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 921,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "使用できるプログラミング言語は Python、Shell、SQL です。マークアップ言語は HTML、CSS、JavaScript です。"
+    },
+    {
+      "id": "ja-skills-003",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1243,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "Cloud と DevOps に関するスキルは、AWS、Git、GitHub Actions、Terraform、AWS SAM です。"
+    },
+    {
+      "id": "ja-certifications-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1009,
+      "passed": false,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": false,
+        "refusal": true
+      },
+      "missingFacts": [
+        "基本情報技術者"
+      ],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "現在取得済みの資格は、TOEFL iBT 101 です。AWS Certified Cloud Practitioner や応用情報技術者、AWS Certified Solutions Architect – Associate は受験予定です。"
+    },
+    {
+      "id": "ja-certifications-002",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 978,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "はい、今後受験する予定の AWS 資格があります。具体的には、AWS Certified Cloud Practitioner を2026年11月に、AWS Certified Solutions Architect – Associate を2027年3月に受験予定です。"
+    },
+    {
+      "id": "ja-education-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1196,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "中央大学 先進理工学部 電気電子情報通信工学科に在籍しており、2030 年卒業予定です。"
+    },
+    {
+      "id": "ja-learning-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1021,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "paiza では、Python と SQL を中心に学習しています。アルゴリズム問題を利用し、実践的なコーディングスキルを強化しています 。"
+    },
+    {
+      "id": "ja-internship-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1195,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "AWS Japan インターンシップ",
+          "section": "experience"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "AWS Japan インターンシップ",
+          "section": "experience"
+        }
+      ],
+      "answer": "AWS Japan のインターンシップは、トランスコスモスの研修プログラムを通じて AWS Japan 本社で行われました 。このインターンシップでは、AWS のアーキテクチャ図を確認しながら、チュートリアルに沿って AWS 環境を構築しました。この経験を通じて、クラウド構成を図から読み取り、手順に沿って実際の環境を構築する経験を得ました。"
+    },
+    {
+      "id": "ja-internship-002",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1001,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "AWS Japan インターンシップ",
+          "section": "experience"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "AWS Japan インターンシップ",
+          "section": "experience"
+        }
+      ],
+      "answer": "AWS Japan インターンシップでは、AWS のアーキテクチャ図を確認しながら、チュートリアルに沿って AWS 環境を構築しました 。この経験を通じて、クラウド構成を図から読み取り、手順に沿って実際の環境を構築する経験を得ました。"
+    },
+    {
+      "id": "ja-project-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1062,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "answer": "Cloud Resume Challenge は、静的な履歴書サイトとサーバーレスバックエンドを組み合わせた個人プロジェクトです。フロントエンドの公開、API、データ保存、Infrastructure as Code、テスト、CI/CD を一体として構築しています。これは、履歴書に記載している AWS 関連経験の一つです。"
+    },
+    {
+      "id": "ja-project-002",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 968,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "answer": "履歴書サイトのフロントエンドは、HTML、CSS、JavaScriptで実装されています。静的ファイルをAmazon S3に配置し、Amazon CloudFrontを通じて配信しています。また、Amazon Route 53も使用しています。GitHub ActionsからS3への同期とCloudFrontのキャッシュ無効化を実行し、フロントエンドを自動デプロイしています。"
+    },
+    {
+      "id": "ja-project-003",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1432,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "answer": "訪問者数カウンターは、ブラウザから Amazon API Gateway の API を呼び出し、Python と boto3 で実装した AWS Lambda が Amazon DynamoDB の訪問者数を更新して返します。バックエンドの基本構成は次のとおりです。```text Browser ↓ API Gateway ↓ Lambda ↓ DynamoDB ```"
+    },
+    {
+      "id": "ja-project-004",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1331,
+      "passed": false,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": false,
+        "refusal": true
+      },
+      "missingFacts": [
+        "AWS SAM"
+      ],
+      "expectedSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "answer": "インフラとデプロイは、Terraform と GitHub Actions を使用して管理しています。具体的には、バックエンドのリソース（AWS Lambda、DynamoDB、IAM など）は Terraform で管理し、GitHub Actions では Python のテストを実行した後に Terraform を使用してインフラをデプロイしています。また、Lambda のテストには pytest、boto3、moto を使用しています。"
+    },
+    {
+      "id": "ja-project-005",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 871,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "answer": "バックエンドでは、Lambda のテストには pytest、boto3、moto を使用しています 。"
+    },
+    {
+      "id": "ja-project-006",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 972,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "answer": "Cloud Resume Challenge プロジェクト中には、アクセス権限や CORS などの問題が発生しました。エラーメッセージと公式ドキュメントを確認し、原因を切り分けながら解決しました 。"
+    },
+    {
+      "id": "zh-cross-language-001",
+      "inputLanguage": "zh",
+      "statusCode": 200,
+      "latencyMs": 1305,
+      "passed": false,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": false,
+        "refusal": true
+      },
+      "missingFacts": [
+        "Cloud Resume Challenge"
+      ],
+      "expectedSources": [
+        {
+          "title": "AWS Japan インターンシップ",
+          "section": "experience"
+        },
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        },
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        },
+        {
+          "title": "プロフィール",
+          "section": "about"
+        },
+        {
+          "title": "AWS Japan インターンシップ",
+          "section": "experience"
+        }
+      ],
+      "answer": "AWS の学習では、教材を読むだけでなく、実際に環境を構築して各サービスの役割や構成を確認しました。初めて扱う技術でも、必要な情報を探し、実際に試しながら理解することを大切にしています。 また、AWS Japan インターンシップを通じて、AWS 環境を構築する経験を積みました。この経験を通じて、クラウド構成を図から読み取り、手順に沿って実際の環境を構築する経験を得ました。"
+    },
+    {
+      "id": "zh-cross-language-002",
+      "inputLanguage": "zh",
+      "statusCode": 200,
+      "latencyMs": 1953,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "Cloud Resume Challenge",
+          "section": "projects"
+        }
+      ],
+      "answer": "Cloud Resume Challenge は、静的な履歴書サイトとサーバーレスバックエンドを組み合わせた個人プロジェクトです。フロントエンドの公開、API、データ保存、Infrastructure as Code、テスト、CI/CD を一体として構築しています。これは、履歴書に記載している AWS 関連経験の一つです。 ## フロントエンド\n履歴書サイトは HTML、CSS、JavaScript で実装しています。静的ファイルを Amazon S3 に配置し、Amazon CloudFront を通じて配信しています。Amazon Route 53 も使用しています。GitHub Actions から S3 への同期と CloudFront のキャッシュ無効化を実行し、フロントエンドを自動デプロイしています。 ## 訪問者数カウンター\nサイトには訪問者数カウンターがあります。ブラウザから Amazon API Gateway の API を呼び出し、Python と boto3 で実装した AWS Lambda が Amazon DynamoDB の訪問者数を更新して返します。バックエンドの基本構成は次のとおりです。 ```text\nBrowser ↓ API Gateway ↓ Lambda ↓ DynamoDB\n```\n\n## Infrastructure as Code と CI/CD\nAWS Lambda、DynamoDB、IAM などのバックエンドリソースは Terraform で管理しています。プロジェクトでは AWS SAM も使用しています。バックエンドの GitHub Actions では、Python のテストを実行した後に Terraform を使ってインフラをデプロイします。Lambda のテストには pytest、boto3、moto を使用しています。 ## 問題解決の経験\n構築中には、アクセス権限や CORS などの問題が発生しました。エラーメッセージと公式ドキュメントを確認し、原因を切り分けながら解決しました。"
+    },
+    {
+      "id": "en-cross-language-001",
+      "inputLanguage": "en",
+      "statusCode": 200,
+      "latencyMs": 944,
+      "passed": false,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": false,
+        "refusal": true
+      },
+      "missingFacts": [
+        "Linux"
+      ],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "テクニカルスキルとして、AWS、Git、GitHub Actions、Terraform、AWS SAM、Python、Shell、SQL、HTML、CSS、JavaScriptが記載されています 。"
+    },
+    {
+      "id": "en-cross-language-002",
+      "inputLanguage": "en",
+      "statusCode": 200,
+      "latencyMs": 971,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "actualSources": [
+        {
+          "title": "スキル・資格・学歴",
+          "section": "skills"
+        }
+      ],
+      "answer": "候補者は中央大学 先進理工学部 電気電子情報通信工学科に在籍しており、2030年に卒業予定です。"
+    },
+    {
+      "id": "refusal-001",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 947,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [],
+      "actualSources": [],
+      "answer": "現在の履歴書には、その情報が記載されていません。AWS の経験、技術スキル、プロジェクト、学歴についてご質問ください。"
+    },
+    {
+      "id": "refusal-002",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 955,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [],
+      "actualSources": [],
+      "answer": "現在の履歴書には、その情報が記載されていません。AWS の経験、技術スキル、プロジェクト、学歴についてご質問ください。"
+    },
+    {
+      "id": "refusal-003",
+      "inputLanguage": "ja",
+      "statusCode": 200,
+      "latencyMs": 1012,
+      "passed": true,
+      "checks": {
+        "http": true,
+        "japanese": true,
+        "sources": true,
+        "facts": true,
+        "refusal": true
+      },
+      "missingFacts": [],
+      "expectedSources": [],
+      "actualSources": [],
+      "answer": "現在の履歴書には、その情報が記載されていません。AWS の経験、技術スキル、プロジェクト、学歴についてご質問ください。"
+    }
+  ]
+}

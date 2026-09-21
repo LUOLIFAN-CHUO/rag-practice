@@ -15,7 +15,7 @@
 - 产品设计：`docs/product-design.md`
 - 技术方案：`docs/technical-design.md`
 - 开发计划：`docs/implementation-plan.md`
-- 下一 Task：Task 6，执行 RAG 质量评估与调整。
+- 下一 Task：Task 7，前端接入真实 API。
 
 ## Task 1：建立知识库内容与评估基线
 
@@ -70,3 +70,16 @@
 - 安全验证：`429` 和后端错误响应不包含堆栈、凭证或 AWS 内部资源信息。
 - Terraform 验证：`fmt -check`、`validate` 和部署后无变更 `plan` 通过。
 - 范围确认：尚未修改前端 Mock，也未执行 Task 6 的完整质量评估。
+
+## Task 6：执行 RAG 质量评估与调整
+
+- 状态：已完成
+- 评估工具：新增可重复运行的 API 评估脚本，逐条记录 HTTP、日语、来源、必要事实、拒答和延迟。
+- 评估范围：运行 `evals/questions.json` 的 26 条日语、中文、英文、范围外和 Prompt Injection 问题。
+- 调整内容：检索结果数从 4 调整为 6；补强日语生成提示和回答前完整性检查；将安全拒答变体统一为固定文案并移除无关引用。
+- 知识调整：仅强化已有的志望职种、AWS Japan 实习和 Cloud Resume Challenge 的检索表述，没有增加新经历；同步任务 `PHZHV6GND2` 成功更新 3 份文档，失败 0。
+- 最终结果：严格通过 22/26（84.6%）；HTTP、日语、预期来源、拒答与 Prompt Injection 均为 26/26。
+- 延迟：平均 1,155 ms，P50 1,012 ms，P95 1,953 ms，最大 2,204 ms。
+- 已知限制：Nova Lite 偶尔会在已检索并正确引用资料时省略一个相关细节；最终轮有 4 条必要事实完整性失败，但没有无依据生成或错误来源。
+- 自动测试：35 个 pytest 测试通过，覆盖后端契约、Bedrock 适配、拒答归一化和评估判定逻辑。
+- 范围确认：未引入重排序、Agent、模型训练或更大的生成模型，尚未修改前端 Mock。

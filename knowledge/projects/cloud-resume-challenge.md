@@ -4,6 +4,8 @@
 
 Cloud Resume Challenge は、静的な履歴書サイトとサーバーレスバックエンドを組み合わせた個人プロジェクトです。フロントエンドの公開、API、データ保存、Infrastructure as Code、テスト、CI/CD を一体として構築しています。
 
+これは、履歴書に記載している AWS 関連経験の一つです。
+
 ## フロントエンド
 
 履歴書サイトは HTML、CSS、JavaScript で実装しています。静的ファイルを Amazon S3 に配置し、Amazon CloudFront を通じて配信しています。Amazon Route 53 も使用しています。

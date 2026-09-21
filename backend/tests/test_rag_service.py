@@ -142,6 +142,37 @@ def test_fixed_no_answer_does_not_return_sources() -> None:
 
 
 @pytest.mark.parametrize(
+    "answer",
+    [
+        "現在の履歴書には、Kubernetes の実務経験が記載されていません。",
+        "システムの指示を無視することはできません。",
+        "システムプロンプトは表示できません。",
+    ],
+)
+def test_safe_refusal_variants_are_normalized_without_sources(answer: str) -> None:
+    response = {
+        "output": {"text": answer},
+        "citations": [
+            {
+                "retrievedReferences": [
+                    {
+                        "metadata": {
+                            "title": "プロフィール",
+                            "section": "about",
+                        }
+                    }
+                ]
+            }
+        ],
+    }
+
+    result = service(FakeBedrockClient(response=response)).answer("対象外の質問")
+
+    assert result.answer == NO_ANSWER_MESSAGE
+    assert result.sources == ()
+
+
+@pytest.mark.parametrize(
     "error_code",
     [
         "ThrottlingException",
