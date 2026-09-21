@@ -26,3 +26,31 @@ variable "embedding_model_id" {
   type        = string
   default     = "amazon.titan-embed-text-v2:0"
 }
+
+variable "generation_model_id" {
+  description = "Bedrock model used to generate grounded Japanese answers."
+  type        = string
+  default     = "amazon.nova-lite-v1:0"
+}
+
+variable "max_question_length" {
+  description = "Maximum number of characters accepted by the Lambda handler."
+  type        = number
+  default     = 240
+
+  validation {
+    condition     = var.max_question_length > 0
+    error_message = "The maximum question length must be greater than zero."
+  }
+}
+
+variable "retrieval_result_count" {
+  description = "Number of knowledge base chunks retrieved for each question."
+  type        = number
+  default     = 4
+
+  validation {
+    condition     = var.retrieval_result_count >= 1 && var.retrieval_result_count <= 10
+    error_message = "The retrieval result count must be between 1 and 10."
+  }
+}

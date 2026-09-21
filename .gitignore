@@ -2,6 +2,7 @@
 *.tfstate
 *.tfstate.*
 *.tfplan
+infrastructure/*.zip
 crash.log
 crash.*.log
 *.tfvars

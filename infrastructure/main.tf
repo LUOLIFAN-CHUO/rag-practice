@@ -9,8 +9,9 @@ locals {
   vector_bucket_name    = "${local.name_prefix}-vectors-${data.aws_caller_identity.current.account_id}"
   vector_index_name     = "${local.name_prefix}-index"
 
-  embedding_model_arn = "arn:${data.aws_partition.current.partition}:bedrock:${var.aws_region}::foundation-model/${var.embedding_model_id}"
-  knowledge_files     = fileset("${path.module}/../knowledge", "**")
+  embedding_model_arn  = "arn:${data.aws_partition.current.partition}:bedrock:${var.aws_region}::foundation-model/${var.embedding_model_id}"
+  generation_model_arn = "arn:${data.aws_partition.current.partition}:bedrock:${var.aws_region}::foundation-model/${var.generation_model_id}"
+  knowledge_files      = fileset("${path.module}/../knowledge", "**")
 }
 
 resource "aws_s3_bucket" "knowledge" {
@@ -252,4 +253,107 @@ resource "aws_bedrockagent_data_source" "resume" {
   }
 
   depends_on = [aws_s3_object.knowledge]
+}
+
+data "archive_file" "rag_lambda" {
+  type        = "zip"
+  output_path = "${path.module}/rag-lambda.zip"
+
+  source {
+    content  = file("${path.module}/../backend/src/__init__.py")
+    filename = "src/__init__.py"
+  }
+
+  source {
+    content  = file("${path.module}/../backend/src/handler.py")
+    filename = "src/handler.py"
+  }
+
+  source {
+    content  = file("${path.module}/../backend/src/rag_service.py")
+    filename = "src/rag_service.py"
+  }
+
+  source {
+    content  = file("${path.module}/../backend/src/response.py")
+    filename = "src/response.py"
+  }
+}
+
+data "aws_iam_policy_document" "lambda_assume_role" {
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "rag_lambda" {
+  name               = "${local.name_prefix}-lambda-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
+}
+
+resource "aws_iam_role_policy_attachment" "rag_lambda_basic" {
+  role       = aws_iam_role.rag_lambda.name
+  policy_arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+data "aws_iam_policy_document" "rag_lambda_bedrock" {
+  statement {
+    sid       = "RetrieveFromKnowledgeBase"
+    effect    = "Allow"
+    actions   = ["bedrock:Retrieve"]
+    resources = [aws_bedrockagent_knowledge_base.resume.arn]
+  }
+
+  statement {
+    sid       = "GenerateFromKnowledgeBase"
+    effect    = "Allow"
+    actions   = ["bedrock:RetrieveAndGenerate"]
+    resources = ["*"]
+  }
+
+  statement {
+    sid       = "InvokeGenerationModel"
+    effect    = "Allow"
+    actions   = ["bedrock:InvokeModel"]
+    resources = [local.generation_model_arn]
+  }
+}
+
+resource "aws_iam_role_policy" "rag_lambda_bedrock" {
+  name   = "${local.name_prefix}-lambda-bedrock"
+  role   = aws_iam_role.rag_lambda.id
+  policy = data.aws_iam_policy_document.rag_lambda_bedrock.json
+}
+
+resource "aws_lambda_function" "rag" {
+  function_name = "${local.name_prefix}-backend"
+  description   = "Resume RAG question answering with Amazon Bedrock Knowledge Bases."
+  role          = aws_iam_role.rag_lambda.arn
+
+  filename         = data.archive_file.rag_lambda.output_path
+  source_code_hash = data.archive_file.rag_lambda.output_base64sha256
+  handler          = "src.handler.lambda_handler"
+  runtime          = "python3.13"
+  memory_size      = 256
+  timeout          = 30
+
+  environment {
+    variables = {
+      GENERATION_MODEL_ARN   = local.generation_model_arn
+      KNOWLEDGE_BASE_ID      = aws_bedrockagent_knowledge_base.resume.id
+      MAX_QUESTION_LENGTH    = tostring(var.max_question_length)
+      RETRIEVAL_RESULT_COUNT = tostring(var.retrieval_result_count)
+    }
+  }
+
+  depends_on = [
+    aws_iam_role_policy.rag_lambda_bedrock,
+    aws_iam_role_policy_attachment.rag_lambda_basic,
+  ]
 }

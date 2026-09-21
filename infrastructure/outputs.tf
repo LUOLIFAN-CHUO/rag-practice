@@ -37,3 +37,13 @@ output "knowledge_base_role_arn" {
   description = "Least-privilege IAM role assumed by Bedrock Knowledge Bases."
   value       = aws_iam_role.knowledge_base.arn
 }
+
+output "rag_lambda_function_name" {
+  description = "Name of the private Lambda function used for Task 4 verification."
+  value       = aws_lambda_function.rag.function_name
+}
+
+output "rag_lambda_function_arn" {
+  description = "ARN of the private Lambda function used for Task 4 verification."
+  value       = aws_lambda_function.rag.arn
+}

@@ -15,7 +15,7 @@
 - 产品设计：`docs/product-design.md`
 - 技术方案：`docs/technical-design.md`
 - 开发计划：`docs/implementation-plan.md`
-- 下一 Task：Task 4，接入 Bedrock 检索与生成。
+- 下一 Task：Task 5，创建公开 API。
 
 ## Task 1：建立知识库内容与评估基线
 
@@ -45,3 +45,15 @@
 - 同步验证：扫描 4 份文档和 4 份 metadata，成功索引 4 份，失败 0 份。
 - 检索验证：Cloud Resume Challenge 日语问题的 Top-1 结果命中 `Cloud Resume Challenge`，来源 section 为 `projects`。
 - Terraform 验证：`fmt -check`、`validate` 和无变更 `plan` 通过。
+
+## Task 4：接入 Bedrock 检索与生成
+
+- 状态：已完成
+- RAG 调用：Lambda 使用 Knowledge Base `XSMLSB5QPI` 调用 `RetrieveAndGenerate`，生成模型为 Amazon Nova Lite。
+- 生成约束：使用固定日语提示，要求只依据检索资料回答，资料不足时返回固定拒答。
+- 引用处理：将 Bedrock 引用映射为公开的 `title` 和 `section`，完成去重且不返回内部 S3 URI。
+- 异常处理：超时、限流、配额和依赖服务异常统一映射为安全的 `503` 响应，其他内部异常不泄露细节。
+- 权限：Lambda 角色仅可检索指定 Knowledge Base，并调用指定的 Nova Lite 模型。
+- 自动测试：28 个 pytest 测试通过，覆盖成功、无引用、固定拒答、超时和服务异常等场景。
+- AWS 验证：日语、中文和英文问题均通过真实 Lambda 调用返回 `200` 和日语回答，来源与知识文档一致。
+- 范围确认：Lambda 可独立完成真实 RAG 请求，尚未创建 API Gateway 或接入公开前端。

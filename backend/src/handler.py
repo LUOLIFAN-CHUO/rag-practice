@@ -1,12 +1,15 @@
 """AWS Lambda entry point for the resume RAG API."""
 
 import json
+import os
 import uuid
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from typing import Any
 
 from .rag_service import (
+    BedrockRagService,
+    RagConfigurationError,
     RagResult,
     RagService,
     RagServiceUnavailableError,
@@ -135,4 +138,27 @@ def create_handler(
     return handler
 
 
-lambda_handler = create_handler(UnconfiguredRagService())
+def _configured_max_question_length() -> int:
+    value = os.environ.get("MAX_QUESTION_LENGTH", str(MAX_QUESTION_LENGTH))
+    try:
+        parsed = int(value)
+    except ValueError:
+        return MAX_QUESTION_LENGTH
+    return parsed if parsed > 0 else MAX_QUESTION_LENGTH
+
+
+def create_lambda_handler() -> Callable[[Any, Any], dict[str, Any]]:
+    """Build the deployed handler from environment configuration."""
+
+    try:
+        service: RagService = BedrockRagService.from_environment()
+    except RagConfigurationError:
+        service = UnconfiguredRagService()
+
+    return create_handler(
+        service,
+        max_question_length=_configured_max_question_length(),
+    )
+
+
+lambda_handler = create_lambda_handler()

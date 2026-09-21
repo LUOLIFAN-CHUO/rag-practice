@@ -1,6 +1,6 @@
 # RAG Backend
 
-Task 2 で作成した AWS Lambda バックエンドのローカル実装です。現在は API 契約、入力検証、レスポンス形式、RAG サービス境界のみを実装しており、AWS や Amazon Bedrock には接続しません。
+Amazon Bedrock Knowledge Bases の `RetrieveAndGenerate` を呼び出す AWS Lambda バックエンドです。質問、回答、引用本文は保存せず、公開レスポンスには metadata の `title` と `section` だけを返します。
 
 ## ローカルテスト
 
@@ -14,7 +14,14 @@ python -m pytest backend/tests -p no:cacheprovider
 ## Lambda ハンドラー
 
 ```text
-backend.src.handler.lambda_handler
+src.handler.lambda_handler
 ```
 
-Bedrock アダプターが未設定のため、デフォルトの Lambda ハンドラーは安全に `503 SERVICE_UNAVAILABLE` を返します。実際の Bedrock 接続は Task 4 で実装します。
+必要な環境変数：
+
+- `KNOWLEDGE_BASE_ID`
+- `GENERATION_MODEL_ARN`
+- `MAX_QUESTION_LENGTH`
+- `RETRIEVAL_RESULT_COUNT`
+
+環境変数がないローカル環境では、デフォルトハンドラーは安全に `503 SERVICE_UNAVAILABLE` を返します。Terraform が Lambda のデプロイ時に実際の値を設定します。
