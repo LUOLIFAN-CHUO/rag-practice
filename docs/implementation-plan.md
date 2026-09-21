@@ -120,7 +120,7 @@ Task 1 已完成。
 - 创建私有 S3 知识文档存储。
 - 创建 S3 Vector Bucket 和索引。
 - 创建 Bedrock Knowledge Base 和 S3 Data Source。
-- 配置 Cohere Embed Multilingual v3。
+- 配置 Amazon Titan Text Embeddings V2（1024 维）。
 - 创建 Knowledge Base 所需的最小权限 IAM Role。
 - 添加 `.gitignore`，排除 Terraform state 和本地构建产物。
 

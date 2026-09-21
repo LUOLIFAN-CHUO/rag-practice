@@ -44,7 +44,7 @@ AWS Lambda (Python)
   ▼
 Amazon Bedrock Knowledge Bases
   ├── Generation: Amazon Nova Lite
-  ├── Embedding: Cohere Embed Multilingual v3
+  ├── Embedding: Amazon Titan Text Embeddings V2
   └── Vector Store: Amazon S3 Vectors
   │
   ▼
@@ -99,9 +99,12 @@ Amazon S3
 
 ### 5.6 Embedding 模型
 
-- Cohere Embed Multilingual v3。
-- 用户可能使用日语、中文或英文提问，但知识文档以日语为主，因此选择多语言 Embedding。
-- Embedding 模型在 Knowledge Base 创建后不轻易更换；更换时通常需要重建索引。
+- Amazon Titan Text Embeddings V2。
+- 使用默认的 1024 维浮点向量，与 S3 Vectors 索引保持一致。
+- 模型支持日语、中文和英文，满足 MVP 的跨语言提问范围。
+- 选择 AWS 原生模型，避免个人 Demo 依赖第三方 AWS Marketplace 订阅和协议状态。
+- Titan V2 主要针对英文优化，跨语言检索质量通过固定评估集验证；如不能满足验收要求，再将 Cohere Embed Multilingual v3 作为后续候选方案。
+- Embedding 模型在 Knowledge Base 创建后不轻易更换；更换时通常需要重建 Knowledge Base 并重新生成向量。
 
 参考：[Knowledge Bases 支持的模型与区域](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-supported.html)
 
@@ -157,9 +160,9 @@ rag_practice/
 │   └── questions.json
 ├── docs/
 │   ├── product-design.md
+│   ├── technical-design.md
 │   ├── implementation-plan.md
 │   └── implementation-status.md
-└── technical-design.md
 ```
 
 目录可以在对应 Task 开始时创建，不需要提前生成空目录。
@@ -388,7 +391,7 @@ Pull Request 或推送时执行：
 - 保留原生静态前端，不引入前端框架。
 - 后端使用独立 RAG Lambda，不修改原访客计数 Lambda。
 - 使用 Bedrock Knowledge Bases，而不是自行编排完整 RAG 流程。
-- 使用 Cohere Embed Multilingual v3 支持跨语言检索。
+- 使用 Amazon Titan Text Embeddings V2，以较低的账户配置复杂度支持 MVP 跨语言检索。
 - 使用 S3 Vectors，避免运行专用向量数据库。
 - MVP 使用单轮问答，不保存会话。
 - 所有答案固定使用日语。
