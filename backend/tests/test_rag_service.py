@@ -96,6 +96,7 @@ def test_answer_calls_bedrock_and_maps_deduplicated_sources() -> None:
     }
     assert "$search_results$" in GENERATION_PROMPT
     assert "$output_format_instructions$" in GENERATION_PROMPT
+    assert "各項目を「・」で始めた別行の箇条書き" in GENERATION_PROMPT
 
 
 def test_start_date_question_returns_only_availability_statement() -> None:
