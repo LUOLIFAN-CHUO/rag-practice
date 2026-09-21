@@ -14,14 +14,14 @@
 
 项目中的主要文档：
 
-- `product-design.md`：产品目标、用户需求和功能。
+- `docs/product-design.md`：产品目标、用户需求和功能。
 - `technical-design.md`：技术架构、技术选型和实现方案。
 - `docs/implementation-plan.md`：开发任务及执行顺序。
 - `docs/implementation-status.md`：任务完成状态。
 
 规则：
 
-- 产品需求以 `product-design.md` 为准。
+- 产品需求以 `docs/product-design.md` 为准。
 - 技术实现以 `technical-design.md` 为主要参考。
 - 开发顺序以 `implementation-plan.md` 为准。
 - 不需要每次重新完整分析所有文档，只读取与当前 Task 相关的内容。
