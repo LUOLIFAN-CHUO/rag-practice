@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "AI-Powered Cloud Portfolio",
+    "quality_profile": "showcase",
+    "viewBox": [1320, 620]
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [48, 92],
+    "cols": 6,
+    "gapX": 55,
+    "gapY": 40,
+    "cellW": 160,
+    "cellH": 74
+  },
+  "components": [
+    { "id": "visitor", "type": "external", "label": "訪問者", "sublabel": "ブラウザ / モバイル", "row": 1, "col": 0 },
+    { "id": "webDelivery", "type": "cloud", "label": "静的サイト配信", "sublabel": "S3 + CloudFront", "row": 1, "col": 1 },
+    { "id": "portfolioUi", "type": "frontend", "label": "Portfolio UI", "sublabel": "React/Vite・JS", "row": 1, "col": 2 },
+    { "id": "ragApi", "type": "cloud", "label": "RAG HTTP API", "sublabel": "Amazon API Gateway", "row": 1, "col": 3 },
+    { "id": "ragLambda", "type": "backend", "label": "RAG Lambda", "sublabel": "Python · 入力検証", "row": 1, "col": 4 },
+    { "id": "knowledgeBase", "type": "backend", "label": "Bedrock Knowledge Base", "sublabel": "RetrieveAndGenerate", "row": 1, "col": 5, "size": [150, 74] },
+    { "id": "foundationModels", "type": "external", "label": "Bedrock モデル", "sublabel": "Nova Lite + Titan V2", "row": 0, "col": 4 },
+    { "id": "visitorApi", "type": "cloud", "label": "Visitor HTTP API", "sublabel": "Amazon API Gateway", "row": 3, "col": 2 },
+    { "id": "counterLambda", "type": "backend", "label": "Counter Lambda", "sublabel": "Python · 加算処理", "row": 3, "col": 3 },
+    { "id": "visitorStore", "type": "database", "label": "訪問者数ストア", "sublabel": "Amazon DynamoDB", "row": 3, "col": 4 },
+    { "id": "vectorStore", "type": "database", "label": "知識・ベクトル", "sublabel": "S3 Vectors + S3 文書", "row": 3, "col": 5 }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "ポートフォリオ配信領域", "wraps": ["webDelivery", "portfolioUi"] },
+    { "kind": "region", "label": "AWS Serverless データプレーン · ap-northeast-1", "wraps": ["ragApi", "ragLambda", "knowledgeBase", "visitorApi", "counterLambda", "visitorStore", "vectorStore"] },
+    { "kind": "security-group", "label": "IAM で保護されたバックエンド境界", "wraps": ["ragLambda", "knowledgeBase", "counterLambda", "visitorStore", "vectorStore"] }
+  ],
+  "connections": [
+    { "id": "openSite", "from": "visitor", "to": "webDelivery", "label": "HTTPS", "variant": "emphasis" },
+    { "id": "loadUi", "from": "webDelivery", "to": "portfolioUi", "label": "静的アセット", "variant": "emphasis" },
+    { "id": "askQuestion", "from": "portfolioUi", "to": "ragApi", "label": "POST /ask · JSON", "variant": "emphasis" },
+    { "id": "invokeRag", "from": "ragApi", "to": "ragLambda", "label": "同期呼び出し", "variant": "emphasis" },
+    { "id": "retrieveGenerate", "from": "ragLambda", "to": "knowledgeBase", "label": "RetrieveAndGenerate", "variant": "emphasis", "labelAt": [1076, 346] },
+    { "id": "generateAnswer", "from": "knowledgeBase", "to": "foundationModels", "label": "埋め込み + 日本語生成", "variant": "emphasis" },
+    { "id": "readVectors", "from": "knowledgeBase", "to": "vectorStore", "label": "意味検索 + 出典マッピング", "fromSide": "bottom", "toSide": "top" },
+    { "id": "countVisit", "from": "portfolioUi", "to": "visitorApi", "label": "GET /count", "fromSide": "bottom", "toSide": "top", "variant": "dashed", "labelAt": [538, 332] },
+    { "id": "invokeCounter", "from": "visitorApi", "to": "counterLambda", "label": "同期呼び出し", "variant": "dashed" },
+    { "id": "incrementCount", "from": "counterLambda", "to": "visitorStore", "label": "UpdateItem · ADD", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "主要リクエストフロー",
+      "items": [
+        "ブラウザから POST /ask で単一ターンの質問を送信します。",
+        "Lambda が Knowledge Base を呼び出し、S3 文書とベクトル検索から出典付きの日本語回答を生成します。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "リポジトリの役割",
+      "items": [
+        "cloud-resume-frontend：静的ポートフォリオと RAG ウィジェット。",
+        "cloud-resume-backend：訪問者カウンター、DynamoDB、Terraform。",
+        "rag-practice：RAG API、ナレッジ、評価、インフラ。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "境界と制約",
+      "items": [
+        "公開面は静的配信と API Gateway のみで、バックエンドは IAM で保護します。",
+        "MVP はログイン、会話永続化、ファイルアップロードを持たず、Terraform で管理します。"
+      ]
+    }
+  ]
+}

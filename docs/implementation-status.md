@@ -121,3 +121,10 @@
 - 交互：保留勤務可能时间首个推荐问题、回答后的开始时间后续问题、来源展示和多事实逐项排版。
 - 验证：TypeScript 类型检查、ESLint、6 个前端测试和 Vite production build 全部通过。
 - 部署：提交 `ce63a89` 已推送到 `typescript-practice`；构建产物已上传到 CloudFront 对应 S3，缓存刷新已完成。
+
+## 日英 README 与統合アーキテクチャ
+
+- 状态：已完成
+- README：日语版设为默认入口，并新增英文版 `README.en.md`。
+- 架构图：加入经过 Archify showcase 验证的日语系统架构图、交互式 HTML 与源规范。
+- 验证：Archify 9/9 检查通过；四种桌面尺寸的浏览器检查通过；后端 32 个测试与前端 6 个测试通过。
