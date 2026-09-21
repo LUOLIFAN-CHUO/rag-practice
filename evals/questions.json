@@ -234,6 +234,26 @@
       "shouldRefuse": false
     },
     {
+      "id": "ja-availability-001",
+      "language": "ja",
+      "question": "いつから勤務を開始できますか。",
+      "expectedSources": [
+        { "title": "勤務可能時間", "section": "availability" }
+      ],
+      "requiredFacts": ["現在", "勤務を開始できます"],
+      "shouldRefuse": false
+    },
+    {
+      "id": "ja-availability-002",
+      "language": "ja",
+      "question": "曜日ごとの勤務可能時間を教えてください。",
+      "expectedSources": [
+        { "title": "勤務可能時間", "section": "availability" }
+      ],
+      "requiredFacts": ["月曜日", "リモートワーク", "水曜日", "13時", "木曜日", "土曜日"],
+      "shouldRefuse": false
+    },
+    {
       "id": "refusal-001",
       "language": "ja",
       "question": "Kubernetes を使った実務経験はありますか？",

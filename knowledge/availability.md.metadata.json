@@ -1,0 +1,25 @@
+{
+  "metadataAttributes": {
+    "title": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "勤務可能時間"
+      },
+      "includeForEmbedding": true
+    },
+    "category": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "availability"
+      },
+      "includeForEmbedding": false
+    },
+    "section": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "availability"
+      },
+      "includeForEmbedding": false
+    }
+  }
+}
