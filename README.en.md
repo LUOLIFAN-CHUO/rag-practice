@@ -1,10 +1,14 @@
 # Resume AI Chatbot (RAG)
 
+> Standalone RAG component of the Cloud Portfolio project. The live AI demo is paused. The current resume is hosted on GitHub Pages.
+
+[Current resume](https://luolifan-chuo.github.io/typescript-practice/) · [Main repository](https://github.com/LUOLIFAN-CHUO/typescript-practice)
+
 [日本語](./README.md) | English
 
 A Japanese-language RAG assistant embedded in an AWS Cloud Resume. It retrieves only from curated, public resume knowledge and uses Amazon Bedrock to generate grounded answers with source attribution. When evidence is missing, it does not speculate.
 
-**Demo:** https://dyp8879eswsdu.cloudfront.net/
+
 
 ## System architecture
 

@@ -128,3 +128,10 @@
 - README：日语版设为默认入口，并新增英文版 `README.en.md`。
 - 架构图：加入以 `typescript-practice` 为前端、经过 Archify showcase 验证的日语系统架构图、交互式 HTML 与源规范。
 - 验证：Archify 9/9 检查通过；四种桌面尺寸的浏览器检查通过；后端 32 个测试与前端 6 个测试通过。
+
+## 2026-11-10 仓库入口整理
+
+- 状态：已完成。
+- README 明确本仓库为独立 RAG 组件，在线 AI 演示休止中。
+- 统一链接到 GitHub Pages 简历与主仓库，移除失效的 CloudFront Demo 链接。
+- 验证：文档链接与 Git diff 检查。
